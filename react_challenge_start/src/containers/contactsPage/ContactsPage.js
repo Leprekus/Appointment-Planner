@@ -7,7 +7,8 @@ export const ContactsPage = ( props ) => {
   Define state variables for 
   contact info and duplicate check
   */
-  const { contacts, setContacts } = props;
+  const contacts = props.contacts;
+  const setContacts = props.setContacts; 
 
   const createContact = (name, phone, email) => {
     const newContact = {
@@ -18,6 +19,7 @@ export const ContactsPage = ( props ) => {
 
     return setContacts( prevProps => [ newContact, ...prevProps] )
   }
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
