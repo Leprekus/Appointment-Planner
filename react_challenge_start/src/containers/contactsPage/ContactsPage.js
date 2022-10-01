@@ -28,12 +28,12 @@ export const ContactsPage = ( props ) => {
     Add contact info and clear data
     if the contact name is not a duplicate
     */
-   //No dupes = [] empty array
-   //Dupes = [] array with length
-   const isDuplicate = contacts.map(contact => (
-    Object.keys(contact).filter(key => contact[key] === contactInfo[key])
-  )) 
-  return isDuplicate.length > 0 ? 'Clear Data' : createContact()
+   // false = no Dupes
+   // true = dupes
+    const isDuplicate = contacts.some(contact => 
+    JSON.stringify(contact) === JSON.stringify(contactInfo));
+
+  return isDuplicate.length > 0 ? (alert('dupe'), console.log(contactInfo)) : createContact()
    
   };
 
@@ -76,11 +76,18 @@ export const ContactsPage = ( props ) => {
         <h2>Contacts</h2>
         { contacts.length > 0 ?
           contacts.map( (contact, index) => (
-            <li key={index}>
+            <ul key={index}>
+            <li>
+            <label>Name: </label>
             {contact.name}
+            <br/>
+            <label>Phone: </label>
             {contact.phone}
+            <br/>
+            <label>Email: </label>
             {contact.email}
             </li>
+            </ul>
             )) : 'No Contacts Found'
         }
       </section>
