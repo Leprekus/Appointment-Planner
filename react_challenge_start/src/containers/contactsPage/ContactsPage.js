@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ContactForm } from "../../components/contactForm/ContactForm";
 
 export const ContactsPage = ( props ) => {
@@ -8,16 +8,18 @@ export const ContactsPage = ( props ) => {
   contact info and duplicate check
   */
 
-  const createContact = (name, phone, email) => {
-    const contacts = props.contacts;
-    const setContacts = props.setContacts; 
+  const [ contactInfo, setContactInfo ] = useState({ 
+    name: 'Name' ,
+    phone: 'Phone',
+    email: 'Email'
+  });
+
+  const contacts = props.contacts;
+  const setContacts = props.setContacts; 
+
   
-    const newContact = {
-      name: name, 
-      phone: phone, 
-      email: email
-    };
-    return setContacts( prevProps => [ newContact, ...prevProps] )
+  const createContact = () => {
+    return setContacts( prevState => [ contactInfo, ...prevState] )
   }
 
   const handleSubmit = (e) => {
@@ -26,10 +28,22 @@ export const ContactsPage = ( props ) => {
     Add contact info and clear data
     if the contact name is not a duplicate
     */
-   console.log(e.target.value)
+    console.log(contactInfo.name)
    //return contacts.filter(contact => contact === contactInfo) ? "clear data" : setContacts(contactInfo)
    
   };
+
+  const handleChange = ( e ) => {
+    const { name, value } = e.target
+    console.log(name)
+    console.log(value)
+    setContactInfo(prevState => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+
 
   /*
   Using hooks, check for contact name in the 
@@ -40,7 +54,15 @@ export const ContactsPage = ( props ) => {
     <div>
       <section>
         <h2>Add Contact</h2> 
-        <ContactForm />
+   
+        {Object.entries(contactInfo).map(([key, value]) => {
+          return <ContactForm 
+          name={key} 
+          value={value}
+          handleChange={handleChange}
+          />
+          })}
+    
       </section>
       <hr />
       <section>
