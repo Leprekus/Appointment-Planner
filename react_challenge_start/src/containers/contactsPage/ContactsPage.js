@@ -20,20 +20,6 @@ export const ContactsPage = ( props ) => {
     return setContacts( prevProps => [ newContact, ...prevProps] )
   }
 
-  const createAppointment = (title, contact, date, time) => {
-    const appointments = props.setAppointments;
-    const setAppointments = props.setAppointments; 
-  
-    const newAppointment = {
-      title: title, 
-      contact: contact,
-      date: date, 
-      time: time
-    };
-
-    return setAppointments( prevProps => [ newAppointment, ...prevProps] )
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     /*
