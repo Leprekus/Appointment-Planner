@@ -51,6 +51,9 @@ function App() {
             <ContactsPage 
             contacts={contacts}
             setContacts={setContacts}
+
+            appointments={appointments}
+            setAppointments={setAppointments}
             />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
