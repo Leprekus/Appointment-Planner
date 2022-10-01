@@ -6,7 +6,7 @@ export const ContactForm = ( props ) => {
     <input 
     type='text' 
     name={props.name} 
-    value={props.value} 
+    placeholder={props.value} 
     onChange={props.handleChange} />
   );
 };

@@ -28,15 +28,17 @@ export const ContactsPage = ( props ) => {
     Add contact info and clear data
     if the contact name is not a duplicate
     */
-    console.log(contactInfo.name)
-   //return contacts.filter(contact => contact === contactInfo) ? "clear data" : setContacts(contactInfo)
+   //No dupes = [] empty array
+   //Dupes = [] array with length
+   const isDuplicate = contacts.map(contact => (
+    Object.keys(contact).filter(key => contact[key] === contactInfo[key])
+  )) 
+  return isDuplicate.length > 0 ? 'Clear Data' : createContact()
    
   };
 
   const handleChange = ( e ) => {
     const { name, value } = e.target
-    console.log(name)
-    console.log(value)
     setContactInfo(prevState => ({
       ...prevState,
       [name]: value,
@@ -54,19 +56,33 @@ export const ContactsPage = ( props ) => {
     <div>
       <section>
         <h2>Add Contact</h2> 
-   
-        {Object.entries(contactInfo).map(([key, value]) => {
-          return <ContactForm 
-          name={key} 
-          value={value}
-          handleChange={handleChange}
-          />
-          })}
+    
+        <form onSubmit={handleSubmit}>
+          { /*Object key passed as name & entry as value */
+            Object.entries(contactInfo).map(([key, value]) => {
+            return <ContactForm
+            name={key}
+            value={value}
+            handleChange={handleChange}
+            />
+            })
+            }
+            <input type='submit' value='Add +'/>
+        </form>
     
       </section>
       <hr />
       <section>
         <h2>Contacts</h2>
+        { contacts.length > 0 ?
+          contacts.map( (contact, index) => (
+            <li key={index}>
+            {contact.name}
+            {contact.phone}
+            {contact.email}
+            </li>
+            )) : 'No Contacts Found'
+        }
       </section>
     </div>
   );
