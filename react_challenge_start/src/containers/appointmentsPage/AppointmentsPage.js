@@ -40,8 +40,8 @@ export const AppointmentsPage = (props) => {
     /*
     Add contact info and clear data  
     */
-   // = no dupes
-   // = dupes
+   // false = no dupes
+   // true = dupes
    const isDuplicate = appointments.some(appointment => 
     appointment[ 'Date' ] === appointmentInfo[ 'Date' ]
     &&
