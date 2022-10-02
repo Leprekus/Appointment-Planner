@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { use } from "chai";
+import { useState, useEffect, useRef } from "react";
 import { ContactForm } from "../../components/contactForm/ContactForm";
 
 export const ContactsPage = ( props ) => {
@@ -9,17 +10,24 @@ export const ContactsPage = ( props ) => {
   */
 
   const [ contactInfo, setContactInfo ] = useState({ 
-    name: 'Name' ,
-    phone: 'Phone',
-    email: 'Email'
+    Name: '' ,
+    Phone: '',
+    Email: ''
   });
-
+  
   const contacts = props.contacts;
   const setContacts = props.setContacts; 
 
-  
+  const resetForm = () => {
+    setContactInfo ({
+      Name: '' ,
+      Phone: '',
+      Email: ''
+    })
+  }
   const createContact = () => {
-    return setContacts( prevState => [ contactInfo, ...prevState] )
+    return setContacts( prevState => [ contactInfo, ...prevState ] )
+
   }
 
   const handleSubmit = (e) => {
@@ -30,10 +38,12 @@ export const ContactsPage = ( props ) => {
     */
    // false = no Dupes
    // true = dupes
+    
     const isDuplicate = contacts.some(contact => 
     JSON.stringify(contact) === JSON.stringify(contactInfo));
-
-  return isDuplicate.length > 0 ? (alert('dupe'), console.log(contactInfo)) : createContact()
+    resetForm()
+  //replace dupe for popup 
+  return isDuplicate ? alert('Contact Already Exists') : createContact()
    
   };
 
@@ -63,6 +73,7 @@ export const ContactsPage = ( props ) => {
             return <ContactForm
             name={key}
             value={value}
+            placeholder={key}
             handleChange={handleChange}
             />
             })
@@ -79,13 +90,13 @@ export const ContactsPage = ( props ) => {
             <ul key={index}>
             <li>
             <label>Name: </label>
-            {contact.name}
+            {contact.Name}
             <br/>
             <label>Phone: </label>
-            {contact.phone}
+            {contact.Phone}
             <br/>
             <label>Email: </label>
-            {contact.email}
+            {contact.Email}
             </li>
             </ul>
             )) : 'No Contacts Found'
