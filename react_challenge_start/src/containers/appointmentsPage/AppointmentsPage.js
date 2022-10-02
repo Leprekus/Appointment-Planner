@@ -6,32 +6,18 @@ export const AppointmentsPage = (props) => {
   Define state variables for 
   appointment info
   */
+ //appointments = array
  const { contacts, appointments, setAppointments } = props
-
- const [ title, setTitle ] = useState('')
- const [ currentContact, setCurrentContact ] = useState('')
- const [ date, setDate ] = useState('')
- const [ time, setTime] = useState('')
 
  const [ appointmentInfo , setAppointmentInfo ] = useState({
   Title: '',
-  currentContact: '',
+  Contact: '',
   Date: '',
   Time: ''
  })
 
- const createAppointment = (title, contact, date, time) => {
-    const appointments = props.setAppointments;
-    const setAppointments = props.setAppointments; 
-  
-    const newAppointment = {
-      title: title, 
-      contact: contact,
-      date: date, 
-      time: time
-    };
-
-    return setAppointments( prevProps => [ newAppointment, ...prevProps] )
+ const createAppointment = () => {
+   return setAppointments( prevProps => [ appointmentInfo, ...prevProps] )
   }
   const resetForm = () => {
     setAppointmentInfo({
@@ -54,7 +40,14 @@ export const AppointmentsPage = (props) => {
     /*
     Add contact info and clear data  
     */
-   resetForm()
+   //true = no dupes
+   //false = dupes
+   const appointmentIsUnqiue = appointments.every(appointment => 
+    appointment[ 'Date' ] === appointmentInfo[ 'Date' ]
+    &&
+    appointment[ 'Time' ] === appointmentInfo[ 'Time' ])
+  appointmentIsUnqiue ? createAppointment() : alert('Conflicting Schedules')
+  return resetForm()
    
   };
 
@@ -79,6 +72,7 @@ export const AppointmentsPage = (props) => {
       <hr />
       <section>
         <h2>Appointments</h2>
+        {appointments.map( appointment =)}
       </section>
     </div>
   );
