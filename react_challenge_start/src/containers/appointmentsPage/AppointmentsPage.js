@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AppointmentForm  } from "../../components/appointmentForm/AppointmentForm";
 import { TileList } from "../../components/tileList/TileList";
-import { useAppointmentInfoContext, useAppointmentInfoUpdateContext, useAppointmentInfoResetContext } from "../../Context/AppointmentInfoContext";
+import { useAppointmentInfoContext, useAppointmentInfoResetContext } from "../../Context/AppointmentInfoContext";
 export const AppointmentsPage = (props) => {
   /*
   Define state variables for 
@@ -18,7 +18,6 @@ export const AppointmentsPage = (props) => {
 //  })
 const appointmentInfo = useAppointmentInfoContext()
 const resetAppointmentInfo = useAppointmentInfoResetContext() 
-const updateAppointmentInfo = useAppointmentInfoUpdateContext()
 
  const createAppointment = () => {
    return setAppointments( prevProps => [ appointmentInfo, ...prevProps] )
@@ -30,13 +29,6 @@ const updateAppointmentInfo = useAppointmentInfoUpdateContext()
       Date: '',
       Time: ''
     })
-  }
-  const handleChange = ({ target }) => {
-    updateAppointmentInfo( prevState => ({
-      ...prevState,
-      [ target.name ]: target.value
-    }))
-
   }
 
   const handleSubmit = (e) => {

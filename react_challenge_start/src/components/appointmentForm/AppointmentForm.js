@@ -1,6 +1,6 @@
 import React from "react";
 import { ContactPicker } from "../contactPicker/ContactPicker";
-import { useAppointmentInfoContext, useAppointmentInfoUpdateContext, useAppointmentInfoResetContext } from "../../Context/AppointmentInfoContext";
+import { useAppointmentInfoUpdateContext } from "../../Context/AppointmentInfoContext";
 export const AppointmentForm = ( props ) => {
   const {
 
@@ -12,8 +12,6 @@ export const AppointmentForm = ( props ) => {
     contacts, 
   } = props
 
-const appointmentInfo = useAppointmentInfoContext()
-const resetAppointmentInfo = useAppointmentInfoResetContext() 
 const updateAppointmentInfo = useAppointmentInfoUpdateContext()
 
   if( name === 'Contact' ) return <ContactPicker contacts={contacts} />

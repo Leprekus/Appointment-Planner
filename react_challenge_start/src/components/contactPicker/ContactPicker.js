@@ -1,12 +1,9 @@
 import React from "react";
-import { useAppointmentInfoContext, useAppointmentInfoUpdateContext, useAppointmentInfoResetContext } from "../../Context/AppointmentInfoContext";
+import { useAppointmentInfoUpdateContext } from "../../Context/AppointmentInfoContext";
 
 export const ContactPicker = ( { contacts }) => {
 
-  const appointmentInfo = useAppointmentInfoContext()
-  const resetAppointmentInfo = useAppointmentInfoResetContext() 
   const updateAppointmentInfo = useAppointmentInfoUpdateContext()
-
 
   return (
       <select name='Contact' onChange={updateAppointmentInfo} >
