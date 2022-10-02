@@ -34,10 +34,12 @@ export const AppointmentsPage = (props) => {
     return setAppointments( prevProps => [ newAppointment, ...prevProps] )
   }
   const resetForm = () => {
-    setTitle('')
-    setCurrentContact('')
-    setDate('')
-    setTime('')
+    setAppointmentInfo({
+      Title: '',
+      currentContact: '',
+      Date: '',
+      Time: ''
+    })
   }
   const handleChange = ({ target }) => {
     setAppointmentInfo( prevState => ({
@@ -60,28 +62,19 @@ export const AppointmentsPage = (props) => {
     <div>
       <section>
         <h2>Add Appointment</h2>
-        <AppointmentForm
-          title={title}
-          currentContact={currentContact}
-          date={date}
-          time={time}
+        <form onSubmit={handleSubmit}>
+          {Object.entries(appointmentInfo).map(([key, value]) => (
+            <AppointmentForm
+              handleChange={handleChange}
+              type={key === 'Date' || key === 'Time' ? key : 'text' }
+              name={key}
+              placeholder={key}
+              value={value}
+            />
+          ))}
+          <input type='submit' value='Submit'/>
+        </form>
 
-          setTitle={setTitle}
-          setCurrentContact={setCurrentContact}
-          setDate={setDate}
-          setTime={setTime}
-          handleSubmit={handleSubmit}
-        />
-
-        {Object.entries(appointmentInfo).map(([key, value]) => (
-          <AppointmentForm
-            handleChange={handleChange}
-            type={key === 'Date' || key === 'Time' ? key : 'text' }
-            name={key}
-            placeholder={key}
-            value={value}
-          />
-        ))}
       </section>
       <hr />
       <section>
