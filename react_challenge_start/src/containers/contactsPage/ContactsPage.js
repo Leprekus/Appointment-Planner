@@ -39,7 +39,10 @@ export const ContactsPage = ( props ) => {
    // true = dupes
     
     const isDuplicate = contacts.some(contact => 
-    JSON.stringify(contact) === JSON.stringify(contactInfo));
+    contact.Phone === contactInfo.Phone
+    ||
+    contact.Email === contactInfo.Email
+    );
     resetForm()
   //replace dupe for popup 
   return isDuplicate ? alert('Contact Already Exists') : createContact()
