@@ -1,6 +1,7 @@
 import { use } from "chai";
 import { useState, useEffect, useRef } from "react";
 import { ContactForm } from "../../components/contactForm/ContactForm";
+import { TileList } from '../../components/tileList/TileList'
 
 export const ContactsPage = ( props ) => {
 
@@ -101,6 +102,9 @@ export const ContactsPage = ( props ) => {
             </ul>
             )) : 'No Contacts Found'
         }
+        <TileList
+          list={contacts}
+        />
       </section>
     </div>
   );
