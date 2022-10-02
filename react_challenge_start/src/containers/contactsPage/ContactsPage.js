@@ -15,9 +15,7 @@ export const ContactsPage = ( props ) => {
     Phone: '',
     Email: ''
   });
-  
-  const contacts = props.contacts;
-  const setContacts = props.setContacts; 
+  const { contacts, setContacts } = props;
 
   const resetForm = () => {
     setContactInfo ({

@@ -5,6 +5,7 @@ export const AppointmentsPage = (props) => {
   Define state variables for 
   appointment info
   */
+ const { appointments, setAppointments } = props
   const createAppointment = (title, contact, date, time) => {
     const appointments = props.setAppointments;
     const setAppointments = props.setAppointments; 
