@@ -1,10 +1,10 @@
 import { useState, useContext, createContext } from "react"
 
 const AppointmentInfoContext = createContext()
-const SetAppointmentInfoContext = createContext()
+const AppointmentInfoUpdateContext = createContext()
 
 export const useAppointmentInfoContext = () => useContext(AppointmentInfoContext)
-export const useSetAppointmentInfoContext = () => useContext(SetAppointmentInfoContext)
+export const useAppointmentInfoUpdateContext = () => useContext(AppointmentInfoUpdateContext)
 
 export const AppopintmentInfoProvider = ({ children }) => {
     const [ appointmentInfo , setAppointmentInfo ] = useState ({
@@ -23,9 +23,9 @@ export const AppopintmentInfoProvider = ({ children }) => {
 
     return (
         <AppointmentInfoContext.Provider value={appointmentInfo}>
-            <SetAppointmentInfoContext.Provider value={handleSetAppointment}>
+            <AppointmentInfoUpdateContext.Provider value={handleSetAppointment}>
                 { children }
-            </SetAppointmentInfoContext.Provider>
+            </AppointmentInfoUpdateContext.Provider>
         </AppointmentInfoContext.Provider>
     )
 
