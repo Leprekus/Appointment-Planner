@@ -1,4 +1,7 @@
-import { useState, useContext } from "react"
+import { useState, useContext, createContext } from "react"
+
+const SetAppopintmentInfo = createContext()
+
 export const SetAppopintmentInfoProvider = ({ children }) => {
     const [ appointmentInfo , setAppointmentInfo ] = useState ({
         Title: '',
@@ -7,14 +10,17 @@ export const SetAppopintmentInfoProvider = ({ children }) => {
         Time: ''
        })
     
-    const doSomething = () => {
-        return
+    const doSomething = ({ target }) => {
+        setAppointmentInfo( prevState => ({
+            ...prevState,
+            [ target.name ]: target.value
+          }))
     }
 
     return (
-        <SetAppopintmentInfoProvider>
+        <SetAppopintmentInfo.Provider value={doSomething}>
             { children }
-        </SetAppopintmentInfoProvider>
+        </SetAppopintmentInfo.Provider>
     )
 
 }   
