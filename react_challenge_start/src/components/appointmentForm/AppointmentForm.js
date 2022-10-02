@@ -1,17 +1,14 @@
 import React from "react";
 
-export const AppointmentForm = ({
-  contacts,
-  title,
-  setTitle,
-  contact,
-  setContact,
-  date,
-  setDate,
-  time,
-  setTime,
-  handleSubmit
-}) => {
+export const AppointmentForm = ( props ) => {
+  const {
+    handleChange,
+    type,
+    name,
+    placeholder,
+    value,
+  } = props
+
   const getTodayString = () => {
     const [month, day, year] = new Date()
       .toLocaleDateString("en-US")
@@ -20,6 +17,10 @@ export const AppointmentForm = ({
   };
 
   return (
-    AppointmentForm
+      <input onChange={handleChange} 
+            type={type} 
+            name={name}
+            placeholder={placeholder} 
+            value={value}/>
   );
 };
