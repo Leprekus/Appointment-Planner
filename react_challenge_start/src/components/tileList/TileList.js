@@ -1,26 +1,35 @@
 import React from "react";
+import { Tile } from '../../components/tile/Tile'
 
 export const TileList = ( props ) => {
+  //separation of concerns
+  //tilelist receives object arr
+  //tile just receives an object
+  //this makes the component more reusable
   const { list } = props
   return (
-    <div>
+    <ul>
     { list.length > 0 ?
-          list.map( (contact, index) => (
+          list.map( (dataObject, index) => (
+            /*
             <ul key={index}>
             <li>
             <label>Name: </label>
-            {contact.Name}
+            {dataObject.Name}
             <br/>
             <label>Phone: </label>
-            {contact.Phone}
+            {dataObject.Phone}
             <br/>
             <label>Email: </label>
-            {contact.Email}
+            {dataObject.Email}
             </li>
             </ul>
-            )) : 'No Contacts Found'
+            */
+            <Tile dataObject={dataObject}/>
+            
+            )) : 'No dataObjects Found'
         }
       
-    </div>
+    </ul>
   );
 };

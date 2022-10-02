@@ -86,22 +86,6 @@ export const ContactsPage = ( props ) => {
       <hr />
       <section>
         <h2>Contacts</h2>
-        { contacts.length > 0 ?
-          contacts.map( (contact, index) => (
-            <ul key={index}>
-            <li>
-            <label>Name: </label>
-            {contact.Name}
-            <br/>
-            <label>Phone: </label>
-            {contact.Phone}
-            <br/>
-            <label>Email: </label>
-            {contact.Email}
-            </li>
-            </ul>
-            )) : 'No Contacts Found'
-        }
         <TileList
           list={contacts}
         />
