@@ -40,13 +40,13 @@ export const AppointmentsPage = (props) => {
     /*
     Add contact info and clear data  
     */
-   //true = no dupes
-   //false = dupes
-   const appointmentIsUnqiue = appointments.every(appointment => 
+   // = no dupes
+   // = dupes
+   const isDuplicate = appointments.some(appointment => 
     appointment[ 'Date' ] === appointmentInfo[ 'Date' ]
     &&
     appointment[ 'Time' ] === appointmentInfo[ 'Time' ])
-  appointmentIsUnqiue ? createAppointment() : alert('Conflicting Schedules')
+  isDuplicate ? alert('Conflicting Schedules') : createAppointment()
   return resetForm()
    
   };
@@ -72,7 +72,17 @@ export const AppointmentsPage = (props) => {
       <hr />
       <section>
         <h2>Appointments</h2>
-        {appointments.map( appointment =)}
+        {appointments.map( appointment => { 
+          return( 
+          <li>
+            
+              {appointment['Title']}
+              {appointment['currentContact']}
+              {appointment['Date']}
+              {appointment['Time']}
+            
+          </li>
+        )})}
       </section>
     </div>
   );
