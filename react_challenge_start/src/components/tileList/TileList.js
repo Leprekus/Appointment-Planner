@@ -27,7 +27,7 @@ export const TileList = ( props ) => {
             */
             <Tile key={`tile_${index}`} dataObject={dataObject}/>
             
-            )) : 'No dataObjects Found'
+            )) : 'Nothing here yet...'
         }
       
     </ul>

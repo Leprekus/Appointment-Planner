@@ -51,6 +51,10 @@ export const AppointmentsPage = (props) => {
    
   };
 
+  const handleChooseContact = () => {
+    return
+  }
+
   return (
     <div>
       <section>
@@ -64,6 +68,8 @@ export const AppointmentsPage = (props) => {
               placeholder={key}
               value={value}
 
+              contacts={contacts}
+              handleChooseContact={handleChooseContact}
               key={`appointmentForm_${index}`}
             />
           ))}

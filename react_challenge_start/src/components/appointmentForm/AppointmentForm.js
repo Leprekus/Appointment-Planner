@@ -1,5 +1,5 @@
 import React from "react";
-
+import { ContactPicker } from "../contactPicker/ContactPicker";
 export const AppointmentForm = ( props ) => {
   const {
     handleChange,
@@ -7,13 +7,20 @@ export const AppointmentForm = ( props ) => {
     name,
     placeholder,
     value,
-  } = props
 
+    contacts, 
+    handleChooseContact
+  } = props
+  if( name === 'Contact' ) return <ContactPicker contacts={contacts} contactsOnChoose={handleChooseContact}/>
   return (
-      <input onChange={handleChange} 
-            type={type} 
-            name={name}
-            placeholder={placeholder} 
-            value={value}/>
+      <input 
+      onChange={handleChange} 
+      type={type} 
+      name={name}
+      placeholder={placeholder} 
+      value={value}
+
+      required
+      />
   );
 };
