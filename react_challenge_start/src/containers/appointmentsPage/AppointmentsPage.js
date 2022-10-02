@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AppointmentForm  } from "../../components/appointmentForm/AppointmentForm";
-
+import { TileList } from "../../components/tileList/TileList";
 export const AppointmentsPage = (props) => {
   /*
   Define state variables for 
@@ -56,13 +56,15 @@ export const AppointmentsPage = (props) => {
       <section>
         <h2>Add Appointment</h2>
         <form onSubmit={handleSubmit}>
-          {Object.entries(appointmentInfo).map(([key, value]) => (
+          {Object.entries(appointmentInfo).map(([key, value], index) => (
             <AppointmentForm
               handleChange={handleChange}
               type={key === 'Date' || key === 'Time' ? key : 'text' }
               name={key}
               placeholder={key}
               value={value}
+
+              key={`appointmentForm_${index}`}
             />
           ))}
           <input type='submit' value='Submit'/>
@@ -72,17 +74,7 @@ export const AppointmentsPage = (props) => {
       <hr />
       <section>
         <h2>Appointments</h2>
-        {appointments.map( appointment => { 
-          return( 
-          <li>
-            
-              {appointment['Title']}
-              {appointment['currentContact']}
-              {appointment['Date']}
-              {appointment['Time']}
-            
-          </li>
-        )})}
+        <TileList list={appointments}/>
       </section>
     </div>
   );
