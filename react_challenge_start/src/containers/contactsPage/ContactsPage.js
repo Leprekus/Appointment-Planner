@@ -68,12 +68,14 @@ export const ContactsPage = ( props ) => {
     
         <form onSubmit={handleSubmit}>
           { /*Object key passed as name & entry as value */
-            Object.entries(contactInfo).map(([key, value]) => {
+            Object.entries(contactInfo).map(([key, value], index) => {
             return <ContactForm
             name={key}
             value={value}
             placeholder={key}
             handleChange={handleChange}
+
+            key={`contactForm_${index}`}
             />
             })
             }
