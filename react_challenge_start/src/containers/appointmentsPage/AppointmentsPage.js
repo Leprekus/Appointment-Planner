@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AppointmentForm  } from "../../components/appointmentForm/AppointmentForm";
 import { TileList } from "../../components/tileList/TileList";
+import { useAppointmentInfoContext, useAppointmentInfoUpdateContext, useAppointmentInfoResetContext } from "../../Context/AppointmentInfoContext";
 export const AppointmentsPage = (props) => {
   /*
   Define state variables for 
@@ -9,18 +10,21 @@ export const AppointmentsPage = (props) => {
  //appointments = array
  const { contacts, appointments, setAppointments } = props
 
- const [ appointmentInfo , setAppointmentInfo ] = useState({
-  Title: '',
-  Contact: '',
-  Date: '',
-  Time: ''
- })
+//  const [ appointmentInfo , setAppointmentInfo ] = useState({
+//   Title: '',
+//   Contact: '',
+//   Date: '',
+//   Time: ''
+//  })
+const appointmentInfo = useAppointmentInfoContext()
+const resetAppointmentInfo = useAppointmentInfoResetContext() 
+const updateAppointmentInfo = useAppointmentInfoUpdateContext()
 
  const createAppointment = () => {
    return setAppointments( prevProps => [ appointmentInfo, ...prevProps] )
   }
   const resetForm = () => {
-    setAppointmentInfo({
+    resetAppointmentInfo({
       Title: '',
       Contact: '',
       Date: '',
@@ -28,7 +32,7 @@ export const AppointmentsPage = (props) => {
     })
   }
   const handleChange = ({ target }) => {
-    setAppointmentInfo( prevState => ({
+    updateAppointmentInfo( prevState => ({
       ...prevState,
       [ target.name ]: target.value
     }))
@@ -51,15 +55,6 @@ export const AppointmentsPage = (props) => {
    
   };
 
-  const handleChooseContact = ({ target }) => {
-    alert(target.value)
-    setAppointmentInfo(prevState => ({
-      ...prevState,
-        [target.name]: target.value
-    }))
-    
-  }
-
 
   return (
     <div>
@@ -69,14 +64,12 @@ export const AppointmentsPage = (props) => {
           {
             Object.entries(appointmentInfo).map(([key, value], index) => (
             <AppointmentForm
-              handleChange={handleChange}
               type={key === 'Date' || key === 'Time' ? key : 'text' }
               name={key}
               placeholder={key}
               value={value}
 
               contacts={contacts}
-              handleChooseContact={handleChooseContact}
               key={`appointmentForm_${index}`}
             />
           ))}
