@@ -22,7 +22,7 @@ export const AppointmentsPage = (props) => {
   const resetForm = () => {
     setAppointmentInfo({
       Title: '',
-      currentContact: '',
+      Contact: '',
       Date: '',
       Time: ''
     })
@@ -51,16 +51,23 @@ export const AppointmentsPage = (props) => {
    
   };
 
-  const handleChooseContact = () => {
-    return
+  const handleChooseContact = ({ target }) => {
+    alert(target.value)
+    setAppointmentInfo(prevState => ({
+      ...prevState,
+        [target.name]: target.value
+    }))
+    
   }
+
 
   return (
     <div>
       <section>
         <h2>Add Appointment</h2>
         <form onSubmit={handleSubmit}>
-          {Object.entries(appointmentInfo).map(([key, value], index) => (
+          {
+            Object.entries(appointmentInfo).map(([key, value], index) => (
             <AppointmentForm
               handleChange={handleChange}
               type={key === 'Date' || key === 'Time' ? key : 'text' }

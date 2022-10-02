@@ -1,12 +1,15 @@
 import React from "react";
-
-export const ContactPicker = ( { contacts, handleChooseContact }) => {
+export const ContactPicker = ( { contacts, handleChoose }) => {
+  alert(handleChoose)
   return (
-    <select>
+      <select onChange={handleChoose || alert('no function defined')} >
     {
-      
       contacts.map((contact, index) => (
-      <option key={`${contact.Name}_${index}`} onChange={handleChooseContact}>{contact.Name}</option>
+      <option 
+      key={`${contact.Name}_${index}`} 
+      name='Contact'
+      value={contact.Name}
+      >{contact.Name}</option>
       ))
     }
     </select>

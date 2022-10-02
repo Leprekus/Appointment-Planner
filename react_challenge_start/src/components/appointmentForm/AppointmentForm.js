@@ -11,7 +11,7 @@ export const AppointmentForm = ( props ) => {
     contacts, 
     handleChooseContact
   } = props
-  if( name === 'Contact' ) return <ContactPicker contacts={contacts} contactsOnChoose={handleChooseContact}/>
+  if( name === 'Contact' ) return <ContactPicker contacts={contacts} handleChooseContact={handleChooseContact}/>
   return (
       <input 
       onChange={handleChange} 
