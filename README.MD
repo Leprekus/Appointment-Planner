@@ -5,7 +5,7 @@ Create an app that manages contacts and appointments using functional React comp
 ## Managing State
 The App Component contains two arrays of objects. One for contacts and one for the appointments.
 
-The Appointments Page has a Appointments Context. This context is used in order to pass the current appoinmtent information accross components. Namely the Contact picker. Whose job is to render the contacts list, and update state on change when choosing a contact. 
+The Appointments Page has a Appointments Context. This context is used in order to pass the current appoinmtent information accross components. Namely the Contact picker. Whose job is to render the contacts list, and update state on change when choosing a contact. `
 
 ### Contacts Page
 
