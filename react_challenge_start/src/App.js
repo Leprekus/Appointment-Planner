@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter as Router ,Switch, Route, Redirect, NavLink } from "react-router-dom";
 
+import { SetAppointmentInfoProvider } from "./Context/setAppointmentContext";
+
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
@@ -55,11 +57,13 @@ function App() {
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
             {/* Add props to AppointmentsPage */}
+            <SetAppointmentInfoProvider>
             <AppointmentsPage
             contacts={contacts} 
             appointments={appointments}
             setAppointments={setAppointments}
             />
+            </SetAppointmentInfoProvider>
           </Route>
         </Switch>
       </main>

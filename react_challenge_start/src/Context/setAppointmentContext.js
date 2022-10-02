@@ -1,6 +1,6 @@
 import { useState, useContext, createContext } from "react"
 
-const SetAppopintmentInfo = createContext()
+const SetAppointmentInfoContext = createContext()
 
 export const SetAppopintmentInfoProvider = ({ children }) => {
     const [ appointmentInfo , setAppointmentInfo ] = useState ({
@@ -18,9 +18,9 @@ export const SetAppopintmentInfoProvider = ({ children }) => {
     }
 
     return (
-        <SetAppopintmentInfo.Provider value={doSomething}>
+        <SetAppointmentInfoContext.Provider value={doSomething}>
             { children }
-        </SetAppopintmentInfo.Provider>
+        </SetAppointmentInfoContext.Provider>
     )
 
-}   
+}    
